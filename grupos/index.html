@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapeamento de Navegação Assistiva</title>
+<meta name="description" content="Grupos, pesquisadores, datasets e tecnologias para mobilidade de pessoas com deficiência visual.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="topbar-inner">
+      <nav class="mainnav" aria-label="Seções do site">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#grupos">Grupos</a></li>
+          <li><a href="#datasets">Datasets</a></li>
+          <li><a href="#pesquisadores">Pesquisadores</a></li>
+          <li><a href="#referencias">Referências</a></li>
+        </ul>
+      </nav>
+      <div class="top-tools">
+        <div class="langctl" role="group" aria-label="Idioma">
+          <button type="button" data-lang="pt" lang="pt-BR" aria-pressed="true" title="Português">PT</button>
+          <button type="button" data-lang="en" lang="en" aria-pressed="false" title="English">EN</button>
+          <button type="button" data-lang="es" lang="es" aria-pressed="false" title="Español">ES</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo" tabindex="-1">
+  <section id="inicio" aria-labelledby="titulo-inicio">
+    <div class="wrap intro">
+      <div class="intro-top">
+        <div class="intro-l">
+          <h1 id="titulo-inicio">Quem pesquisa navegação assistiva, e com quais dados</h1>
+          <p class="lead">Um mapa de grupos, pesquisadores, trabalhos e datasets sobre a mobilidade de pessoas com deficiência visual: identificar caminhos livres, detectar obstáculos e orientar a direção com visão computacional e aprendizado profundo. Inclui pesquisas de robótica cujas técnicas podem servir a sistemas assistivos.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#grupos">Ver grupos de pesquisa</a>
+            <a class="btn" href="#datasets">Explorar datasets</a>
+          </div>
+        </div>
+        <aside class="sumario" aria-labelledby="titulo-resumo">
+          <h2 id="titulo-resumo">Resumo do mapeamento</h2>
+          <dl id="stats"></dl>
+          <p class="sumario-foot">Números calculados a partir dos dados cadastrados. Verificado em <span data-verificado></span>.</p>
+        </aside>
+      </div>
+
+      <div class="quick" aria-labelledby="titulo-quick">
+        <div class="quick-head">
+          <h2 id="titulo-quick">Filtros rápidos</h2>
+        </div>
+        <div id="quick-rows"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="grupos" aria-labelledby="titulo-grupos">
+    <div class="wrap">
+      <div class="sec-head"><div class="sh-l"><h2 id="titulo-grupos">Grupos de pesquisa</h2></div></div>
+      <form class="filters" id="f-grupos" aria-label="Filtros de grupos" onsubmit="return false">
+        <div class="full"><label for="fg-q">Buscar</label><input id="fg-q" type="search" placeholder="Nome, instituição, linha de pesquisa ou pesquisador"></div>
+        <div><label for="fg-pais">País</label><select id="fg-pais"></select></div>
+        <div><label for="fg-area">Área de pesquisa</label><select id="fg-area"></select></div>
+        <div><label for="fg-tipo">Tipo de entidade</label><select id="fg-tipo">
+          <option value="">Todos os tipos</option>
+          <option value="laboratorio">Laboratório / grupo formal</option>
+          <option value="equipe">Equipe de projeto</option>
+          <option value="colaboracao">Colaboração entre instituições</option>
+        </select></div>
+        <div><label for="fg-secao">Foco</label><select id="fg-secao">
+          <option value="" title="Tecnologia assistiva e robótica">Todos</option>
+          <option value="assistiva">Tecnologia assistiva</option>
+          <option value="robotica">Robótica</option>
+        </select></div>
+        <div><label for="fg-ord">Ordenar por</label><select id="fg-ord">
+          <option value="padrao">Ordem do levantamento</option>
+          <option value="assist" title="Mais trabalhos em tecnologia assistiva">Mais trabalhos</option>
+        </select></div>
+        <div><p class="check"><input type="checkbox" id="fg-fav"><label for="fg-fav" style="margin:0;color:var(--ink);font-size:.92rem">Só favoritos</label></p></div>
+      </form>
+      <p class="result-count" id="rc-grupos" aria-live="polite"></p>
+      <div class="grid" id="lista-grupos"></div>
+    </div>
+  </section>
+
+  <section id="datasets" aria-labelledby="titulo-ds">
+    <div class="wrap">
+      <div class="sec-head"><div class="sh-l"><h2 id="titulo-ds">Datasets</h2></div></div>
+      <div class="filters" role="group" aria-labelledby="ds-filtros-rot">
+        <p id="ds-filtros-rot" class="full" style="font-weight:700;font-size:.85rem;color:var(--muted)">Filtrar por categoria</p>
+        <div class="full chips-bar" id="ds-chips"></div>
+        <div><label for="fd-q">Buscar</label><input id="fd-q" type="search" placeholder="Nome, equipe ou descrição"></div>
+        <div><p class="check"><input type="checkbox" id="fd-fav"><label for="fd-fav" style="margin:0;color:var(--ink);font-size:.92rem">Só favoritos</label></p></div>
+        <div><button type="button" class="btn btn-ghost" id="fd-limpar">Limpar filtros</button></div>
+      </div>
+      <p class="result-count" id="rc-ds" aria-live="polite"></p>
+      <div class="grid" id="lista-ds"></div>
+    </div>
+  </section>
+
+  <section id="pesquisadores" aria-labelledby="titulo-pesq">
+    <div class="wrap">
+      <div class="sec-head"><div class="sh-l"><h2 id="titulo-pesq">Pesquisadores</h2></div><div class="sh-r"><p>Autores dos trabalhos mapeados que têm perfil confirmado no Google Acadêmico. Cada nome reúne todos os trabalhos da pessoa neste levantamento, e é possível ordenar a lista por quem mais aparece em trabalhos de tecnologia assistiva.</p></div></div>
+      <form class="filters" id="f-pesq" aria-label="Filtros de pesquisadores" onsubmit="return false">
+        <div class="full"><label for="fp-q">Buscar por nome</label><input id="fp-q" type="search" placeholder="Nome do pesquisador"></div>
+        <div><label for="fp-pais">País</label><select id="fp-pais"></select></div>
+        <div><label for="fp-inst">Instituição</label><select id="fp-inst"></select></div>
+        <div><label for="fp-area">Área de pesquisa</label><select id="fp-area"></select></div>
+        <div><label for="fp-ord">Ordenar por</label><select id="fp-ord">
+          <option value="nome">Nome (A a Z)</option>
+          <option value="assist" title="Mais trabalhos em tecnologia assistiva">Mais trabalhos</option>
+        </select></div>
+      </form>
+      <p class="result-count" id="rc-pesq" aria-live="polite"></p>
+      <div class="rlist" id="lista-pesq"></div>
+      <div class="more-wrap"><button type="button" class="btn" id="mais-pesq" hidden>Mostrar mais pesquisadores</button></div>
+    </div>
+  </section>
+
+  <section id="referencias" aria-labelledby="titulo-ref" style="border-bottom:0">
+    <div class="wrap">
+      <div class="sec-head"><div class="sh-l"><h2 id="titulo-ref">Referências</h2></div></div>
+      <div class="panel"><ol class="sources" id="lista-fontes"></ol></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="tactile" aria-hidden="true" style="max-width:220px"></div>
+    <p>Mapeamento de pesquisas em navegação assistiva · dados verificados em <span data-verificado></span>. Seleção inicial, não exaustiva.</p>
+    <p>Os favoritos ficam salvos apenas neste navegador.</p>
+  </div>
+</footer>
+
+<dialog id="modal" aria-labelledby="modal-titulo">
+  <div class="modal-head">
+    <div style="display:grid;gap:.35rem"><div id="modal-kicker" class="tags"></div><h2 id="modal-titulo"></h2></div>
+    <button type="button" class="btn" id="modal-fechar" aria-label="Fechar detalhes">Fechar</button>
+  </div>
+  <div class="modal-body" id="modal-corpo"></div>
+</dialog>
+
+<script src="js/dados.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
