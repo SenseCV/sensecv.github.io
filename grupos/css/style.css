@@ -92,7 +92,12 @@ label{font-weight:700;font-size:.8rem;color:var(--ink);display:block;margin-bott
 @media (max-width:900px){.intro-top{grid-template-columns:1fr}}
 .intro-l{display:grid;gap:1.3rem;align-content:center;justify-items:start}
 .intro-pills{display:flex;gap:.5rem;flex-wrap:wrap}
-.intro h1{font-size:clamp(2.4rem,5.6vw,4.6rem);letter-spacing:-.045em;line-height:1;max-width:15ch}
+.intro h1{font-size:clamp(2.4rem,5.6vw,4.4rem);letter-spacing:-.045em;line-height:1;max-width:16ch}
+.h1-sub{display:block;font-size:.5em;letter-spacing:-.03em;color:var(--muted);margin-top:.35em}
+.criterios{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;width:100%;max-width:58ch}
+.criterios li{background:var(--surface);border-radius:14px;padding:.7rem .95rem;display:grid;gap:.1rem;border-left:4px solid #e8b923}
+.criterios strong{font-family:var(--font-display);font-weight:600;letter-spacing:-.015em}
+.criterios span{color:var(--muted);font-size:.93rem}
 .lead{color:var(--muted);font-size:clamp(1rem,1.4vw,1.12rem);max-width:58ch}
 .cta{display:flex;flex-wrap:wrap;gap:.55rem}
 .sumario{background:var(--ink);color:#fff;border-radius:26px;padding:1.5rem 1.6rem 1.3rem;display:flex;flex-direction:column;gap:.4rem;position:relative;overflow:hidden}
